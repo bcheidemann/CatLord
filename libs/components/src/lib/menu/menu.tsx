@@ -1,11 +1,18 @@
+import React from 'react';
 import './menu.css';
 
-/* eslint-disable-next-line */
-export interface MenuProps {}
+export interface MenuProps {
+  open?: boolean;
+}
 
 export function Menu(props: MenuProps) {
+
+  React.useEffect(() => {
+    console.log(props.open);
+  }, [props.open]);
+
   return (
-    <div>
+    <div className={'menu'}>
       <h1>Welcome to Menu!</h1>
     </div>
   );
