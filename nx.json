@@ -27,6 +27,9 @@
     ]
   },
   "projects": {
+    "components": {
+      "tags": []
+    },
     "website": {
       "tags": []
     },
