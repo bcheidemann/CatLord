@@ -1,24 +1,15 @@
 import { AppProps } from 'next/app';
-import Head from 'next/head';
+import '@south-paw/typeface-minecraft';
 import './styles.css';
+import React from 'react';
+import { MainPage } from '../components/main-page';
+import '../../../libs/components/src/lib/menu/menu.css';
 
 function CustomApp({ Component, pageProps }: AppProps) {
   return (
-    <>
-      <Head>
-        <title>Welcome to website!</title>
-      </Head>
-      <div className="app">
-        <header className="flex">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/nx-logo-white.svg" alt="Nx logo" width="75" height="50" />
-          <h1>Welcome to website!</h1>
-        </header>
-        <main>
-          <Component {...pageProps} />
-        </main>
-      </div>
-    </>
+    <MainPage>
+      <Component {...pageProps} />
+    </MainPage>
   );
 }
 
