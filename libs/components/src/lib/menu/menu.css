@@ -1,8 +1,149 @@
+:root {
+  --menu-background-open: rgba(0, 0, 0, 0.5);
+  --menu-background-closed: rgba(0, 0, 0, 0);
+  --menu-background-blur: 10px;
+  --menu-item-animation-dist: 400px;
+}
+
 .menu {
+  position: fixed;
+  inset: 0;
   flex: 1;
   display: flex;
-  background-color: rgba(0, 0, 0, 0.5);
+  flex-direction: column;
+  background-color: var(--menu-background-open);
   height: 100%;
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(var(--menu-background-blur));
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  user-select: none;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu.open {
+  pointer-events: auto;
+  animation-name: open-menu;
+}
+
+.menu.closed {
+  pointer-events: none;
+  animation-name: close-menu;
+}
+
+.menu > .section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  flex-direction: column;
+}
+
+.menu > .section.active {
+}
+
+.menu > .section.hidden {
+  display: none;
+}
+
+.menu > .section.hidden.left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  pointer-events: none;
+  height: 100%;
+}
+
+.menu > .section > .item {
+  margin: 0.2em;
+  font-size: 1.2em;
+  font-weight: 300;
+  color: white;
+  animation-duration: 0.7s;
+  animation-fill-mode: forwards;
+  animation-delay: calc(var(--animation-order) * 50ms);
+  transition: 0.2s;
+}
+
+.menu > .section > .item:hover {
+  color: rgba(255, 255, 255, 0.3)
+}
+
+.menu.open > .section > .item {
+  animation-name: slide-in;
+  transform: translateX(var(--menu-item-animation-dist));
+  opacity: 0;
+}
+
+.menu.closed > .section > .item {
+  animation-name: slide-out;
+}
+
+.menu > .section.hidden.left > .item {
+  animation-name: slide-out-left;
+  transform: unset;
+  pointer-events: auto;
+  opacity: 1;
+}
+
+.norender {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@keyframes close-menu {
+  from {
+    background-color: var(--menu-background-open);
+    backdrop-filter: blur(var(--menu-background-blur));
+  }
+  to {
+    background-color: var(--menu-background-closed);
+    backdrop-filter: unset;
+  }
+}
+
+@keyframes open-menu {
+  from {
+    background-color: var(--menu-background-closed);
+    backdrop-filter: unset;
+  }
+  to {
+    background-color: var(--menu-background-open);
+    backdrop-filter: blur(var(--menu-background-blur));
+  }
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(var(--menu-item-animation-dist));
+    opacity: 0;
+  }
+  to {
+    transform: unset;
+    opacity: 1;
+  }
+}
+
+@keyframes slide-out {
+  from {
+    transform: unset;
+    opacity: 1;
+  }
+  to {
+    transform: translateX(var(--menu-item-animation-dist));
+    opacity: 0;
+  }
+}
+
+@keyframes slide-out-left {
+  from {
+    transform: unset;
+    opacity: 1;
+  }
+  to {
+    transform: translateX(calc(-1 * var(--menu-item-animation-dist)));
+    opacity: 0;
+  }
 }
