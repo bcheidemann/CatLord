@@ -1,3 +1,6 @@
+// NOTE: MUST SERVE THE PUBLIC DIR IN APPS/WEBSITE
+// FOR DEEPSLATE TEXTURE WHEN RUNNING STORYBOOK
+
 import '../../storybook/setup';
 import { Story, Meta } from '@storybook/react';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
