@@ -1,0 +1,27 @@
+:root {
+  --test: yellow;
+}
+
+div.navbar.placeholder {
+  height: 30px;
+}
+
+header.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  /* background-color: yellow; */
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  height: 30px;
+  transition: 0.3s;
+  color: white;
+}
+
+header.navbar.floating {
+  box-shadow: 0px -4px 16px 10px rgba(0, 0, 0, 0.5);
+  background-image: url('/deepslate.png');
+  opacity: 1;
+}
