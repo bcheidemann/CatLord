@@ -36,6 +36,12 @@
     "components": {
       "tags": []
     },
+    "hooks": {
+      "tags": []
+    },
+    "types": {
+      "tags": []
+    },
     "website": {
       "tags": []
     },
