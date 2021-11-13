@@ -8,7 +8,6 @@ import '../../../libs/components/src/lib/navbar/navbar.css';
 
 function CustomApp({ Component, pageProps }: AppProps) {
   return (
-    // <Html></Html>
     <MainPage>
       <Component {...pageProps} />
     </MainPage>
