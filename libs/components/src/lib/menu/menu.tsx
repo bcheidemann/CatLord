@@ -15,12 +15,12 @@ declare module 'csstype' {
   }
 }
 
-export interface MenuProps {
+export interface MenuProps<DataType = unknown> {
   activeSectionId: string;
   menuSections: IMenuSection[];
   open?: boolean;
   onRequestClose?: Callback;
-  onSelectOption?: (sectionId: string, optionId: string) => void;
+  onSelectOption?: (sectionId: string, optionId: string, data?: DataType) => void;
   onClosed?: Callback;
   onOpened?: Callback;
 }
@@ -97,7 +97,7 @@ export function Menu(props: MenuProps) {
                 onSelectOption &&
                 ((event: React.MouseEvent) => {
                   event.stopPropagation();
-                  onSelectOption(section.id, option.id);
+                  onSelectOption(section.id, option.id, option.data);
                 });
               return (
                 <span

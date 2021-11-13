@@ -4,9 +4,11 @@ import './styles.css';
 import React from 'react';
 import { MainPage } from '../components/main-page';
 import '../../../libs/components/src/lib/menu/menu.css';
+import '../../../libs/components/src/lib/navbar/navbar.css';
 
 function CustomApp({ Component, pageProps }: AppProps) {
   return (
+    // <Html></Html>
     <MainPage>
       <Component {...pageProps} />
     </MainPage>

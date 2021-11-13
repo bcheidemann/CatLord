@@ -1,6 +1,9 @@
-export interface IMenuOption {
+import React from 'react';
+
+export interface IMenuOption<Data = unknown> {
   name: string;
   id: string;
+  data?: Data;
 }
 
 export interface IMenuSection {

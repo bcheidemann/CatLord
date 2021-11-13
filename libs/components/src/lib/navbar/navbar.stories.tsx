@@ -21,9 +21,23 @@ export default {
 
 const Template: Story<INavBarProps> = (args) => (
   <>
-    <NavBar {...args} />
+    <NavBar {...args}>
+      <NavBar.Section.Left>
+        <img
+          src={'/logo.png'}
+          height={'110%'}
+          width={'auto'}
+          alt={'CatLord Logo'}
+          style={{ marginTop: 2, paddingRight: 10 }}
+        />
+        <h1>CatLord MC</h1>
+      </NavBar.Section.Left>
+      <NavBar.Section.Right>
+        <NavBar.Button>MENU</NavBar.Button>
+      </NavBar.Section.Right>
+    </NavBar>
     {Array.from({ length: 100 }).map((v, i) => (
-      <h2>Text {i}</h2>
+      <h2 key={i}>Text {i}</h2>
     ))}
   </>
 );

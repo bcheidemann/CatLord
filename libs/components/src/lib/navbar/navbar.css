@@ -3,7 +3,7 @@
 }
 
 div.navbar.placeholder {
-  height: 30px;
+  height: 48px;
 }
 
 header.navbar {
@@ -12,15 +12,94 @@ header.navbar {
   left: 0;
   right: 0;
   display: flex;
+  flex-direction: row;
   align-items: center;
-  padding: 10px;
+  justify-content: space-between;
+  background-color: #222;
+  padding: 8px;
   height: 30px;
   transition: 0.3s;
   color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+  user-select: none;
+  border-width: 0;
+  border-bottom-width: 2px;
+  border-color: #090909;
+  border-style: solid;
+  background-image: url('/deepslate_bricks_16.png');
+  background-size: contain;
+  image-rendering: pixelated;
 }
 
 header.navbar.floating {
   box-shadow: 0px -4px 16px 10px rgba(0, 0, 0, 0.5);
-  background-image: url('/deepslate.png');
+}
+
+header.navbar > section.navbar.left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 100%;
+}
+
+header.navbar > section.navbar.right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 100%;
+}
+
+header.navbar button {
+  background-color: transparent;
+  border-style: solid;
+  border-color: white;
+  height: 100%;
+  border-radius: 5px;
+  color: white;
+  font-size: 1em;
+  font-family: Minecraft;
+  border-width: 0px;
+  font-size: 1.5em;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+@media only screen and (max-width: 600px) {
+  header.navbar button span {
+    display: none;
+  }
+}
+
+header.navbar button:hover {
+  /* opacity: 0.6; */
+  cursor: pointer;
+}
+
+header.navbar button:hover svg * {
+  transition: 0.3s;
+}
+
+header.navbar button .buttontext {
+  margin-left: 6px;
+}
+
+header.navbar button:hover #arrow1 {
+  transform: translateY(100%);
+}
+
+header.navbar button:hover #arrow2 {
+  transform: translateY(10px);
+}
+
+header.navbar button #arrow3 {
+  transform: translateY(-100%);
+}
+
+header.navbar button:hover #arrow3 {
+  transform: unset;
   opacity: 1;
 }
