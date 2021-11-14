@@ -37,3 +37,7 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# CMS
+/apps/cms/node_modules
+/apps/cms/dist
