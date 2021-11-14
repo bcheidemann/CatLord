@@ -1,6 +1,7 @@
 import { useToggle } from '@catlord/hooks';
 import Head from 'next/head';
-import React from 'react';
+import React, { useMemo, useState } from 'react';
+import ReactDOM from 'react-dom';
 import { IMenuSection, Menu, NavBar } from '@catlord/components';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -27,9 +28,11 @@ const menuSections: IMenuSection[] = [
   },
 ];
 
+const bodyElement = globalThis.window?.document.body;
+
 export const MainPage: React.FC = ({ children }) => {
   const [open, toggle] = useToggle();
-  const [activeSectionId, setActiveSectionId] = React.useState('main');
+  const [activeSectionId, setActiveSectionId] = useState('main');
   const router = useRouter();
 
   function onSelectOption(sectionId: string, optionId: string, route: string) {
@@ -68,14 +71,17 @@ export const MainPage: React.FC = ({ children }) => {
           </NavBar.Section.Right>
         </NavBar>
         <main>{children}</main>
-        <Menu
-          menuSections={menuSections}
-          activeSectionId={activeSectionId}
-          open={open}
-          onRequestClose={toggle}
-          onSelectOption={onSelectOption}
-          onClosed={() => setActiveSectionId('main')}
-        />
+        {bodyElement && ReactDOM.createPortal(
+          <Menu
+            menuSections={menuSections}
+            activeSectionId={activeSectionId}
+            open={open}
+            onRequestClose={toggle}
+            onSelectOption={onSelectOption}
+            onClosed={() => setActiveSectionId('main')}
+          />,
+          bodyElement,
+        )}
       </div>
     </>
   );

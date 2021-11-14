@@ -11,12 +11,21 @@ const nextConfig = {
     svgr: true,
   },
   webpack: (config, { dev, isServer }) => {
-    // replace react with preact
-    Object.assign(config.resolve.alias, {
-      react: 'preact/compat',
-      'react-dom/test-utils': 'preact/test-utils',
-      'react-dom': 'preact/compat',
-    });
+    switch (process.env.FRAMEWORK) {
+      case 'react':
+        Object.assign(config.resolve.alias, {
+          'preact/debug': 'react',
+        });
+        break;
+      case 'preact':
+      default:
+        Object.assign(config.resolve.alias, {
+          react: 'preact/compat',
+          'react-dom/test-utils': 'preact/test-utils',
+          'react-dom': 'preact/compat',
+        });
+        break;
+    }
 
     return config;
   }
