@@ -1,51 +1,10 @@
 {
   "version": 2,
   "projects": {
-    "cdn": {
-      "root": "libs/cdn",
-      "sourceRoot": "libs/cdn/src",
-      "projectType": "library",
-      "targets": {
-        "build": {
-          "executor": "@nrwl/web:package",
-          "outputs": ["{options.outputPath}"],
-          "options": {
-            "outputPath": "dist/libs/cdn",
-            "tsConfig": "libs/cdn/tsconfig.lib.json",
-            "project": "libs/cdn/package.json",
-            "entryFile": "libs/cdn/src/index.ts",
-            "external": ["react/jsx-runtime"],
-            "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
-            "assets": [
-              {
-                "glob": "libs/cdn/README.md",
-                "input": ".",
-                "output": "."
-              }
-            ]
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/cdn/**/*.{ts,tsx,js,jsx}"]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/cdn"],
-          "options": {
-            "jestConfig": "libs/cdn/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "cms": {
       "root": "apps/cms",
       "projectType": "application",
-      "targets": {},
-      "tags": []
+      "targets": {}
     },
     "components": {
       "root": "libs/components",
@@ -159,6 +118,40 @@
         }
       }
     },
+    "lib-cms": {
+      "root": "libs/lib-cms",
+      "sourceRoot": "libs/lib-cms/src",
+      "projectType": "library",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/lib-cms",
+            "tsConfig": "libs/lib-cms/tsconfig.lib.json",
+            "packageJson": "libs/lib-cms/package.json",
+            "main": "libs/lib-cms/src/index.ts",
+            "assets": ["libs/lib-cms/*.md"]
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/lib-cms/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/lib-cms"],
+          "options": {
+            "jestConfig": "libs/lib-cms/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
     "types": {
       "root": "libs/types",
       "sourceRoot": "libs/types/src",
@@ -265,23 +258,6 @@
             "lintFilePatterns": ["apps/website-e2e/**/*.{js,ts}"]
           }
         }
-      }
-    }
-  },
-  "cli": {
-    "defaultCollection": "@nrwl/next"
-  },
-  "defaultProject": "website",
-  "generators": {
-    "@nrwl/react": {
-      "application": {
-        "babel": true
-      }
-    },
-    "@nrwl/next": {
-      "application": {
-        "style": "css",
-        "linter": "eslint"
       }
     }
   }

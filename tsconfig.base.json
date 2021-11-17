@@ -16,7 +16,7 @@
     "baseUrl": ".",
     "strictNullChecks": true,
     "paths": {
-      "@catlord/cdn": ["libs/cdn/src/index.ts"],
+      "@catlord/cms": ["libs/lib-cms/src/index.ts"],
       "@catlord/components": ["libs/components/src/index.ts"],
       "@catlord/hooks": ["libs/hooks/src/index.ts"],
       "@catlord/types": ["libs/types/src/index.ts"]
