@@ -124,21 +124,28 @@
       "projectType": "library",
       "targets": {
         "build": {
-          "executor": "@nrwl/node:package",
+          "executor": "@nrwl/web:package",
           "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/libs/lib-cms",
             "tsConfig": "libs/lib-cms/tsconfig.lib.json",
-            "packageJson": "libs/lib-cms/package.json",
-            "main": "libs/lib-cms/src/index.ts",
-            "assets": ["libs/lib-cms/*.md"]
+            "project": "libs/lib-cms/package.json",
+            "entryFile": "libs/lib-cms/src/index.ts",
+            "external": ["react/jsx-runtime"],
+            "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+            "assets": [
+              {
+                "glob": "libs/lib-cms/README.md",
+                "input": ".",
+                "output": "."
+              }
+            ]
           }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
           "options": {
-            "lintFilePatterns": ["libs/lib-cms/**/*.ts"]
+            "lintFilePatterns": ["libs/lib-cms/**/*.{ts,tsx,js,jsx}"]
           }
         },
         "test": {
@@ -149,8 +156,7 @@
             "passWithNoTests": true
           }
         }
-      },
-      "tags": []
+      }
     },
     "types": {
       "root": "libs/types",
@@ -258,6 +264,23 @@
             "lintFilePatterns": ["apps/website-e2e/**/*.{js,ts}"]
           }
         }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/next"
+  },
+  "defaultProject": "website",
+  "generators": {
+    "@nrwl/react": {
+      "application": {
+        "babel": true
+      }
+    },
+    "@nrwl/next": {
+      "application": {
+        "style": "css",
+        "linter": "eslint"
       }
     }
   }

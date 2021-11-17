@@ -42,6 +42,9 @@
     "hooks": {
       "tags": []
     },
+    "lib-cms": {
+      "tags": []
+    },
     "types": {
       "tags": []
     },

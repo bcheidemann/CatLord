@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "nx serve",
     "start": "next start ./dist/apps/website",
-    "build": "nx build",
+    "build": "nx build --prod",
     "test": "nx test"
   },
   "private": true,
