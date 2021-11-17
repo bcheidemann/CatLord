@@ -17,6 +17,11 @@ export default createSchema({
       title: 'Page',
       fields: [
         {
+          title: 'Title',
+          name: 'title',
+          type: 'string',
+        },
+        {
           title: 'Path',
           name: 'path',
           type: 'string',
@@ -24,9 +29,13 @@ export default createSchema({
         {
           title: 'Content',
           name: 'content',
-          type: 'string',
+          type: 'array',
+          of: [
+            { type: 'block' },
+            { type: 'image' },
+          ]
         },
       ]
-    }
+    },
   ]),
 })

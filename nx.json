@@ -33,6 +33,9 @@
     ]
   },
   "projects": {
+    "cdn": {
+      "tags": []
+    },
     "components": {
       "tags": []
     },

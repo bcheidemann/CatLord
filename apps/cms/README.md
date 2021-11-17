@@ -15,4 +15,4 @@ Commans:
  - `sanity start` to run Sanity studio locally
  - `sanity build` builds the current Sanity configuration
  - `sanity deploy` to deploy to [https://catlord.sanity.studio/](https://catlord.sanity.studio/)
- - `sanity graphql deploy` to deploy the graphql schema
+ - `sanity graphql deploy` to deploy the graphql schema (use the `--playground` flag to deploy a graphql playground)
