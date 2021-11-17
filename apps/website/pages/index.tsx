@@ -1,12 +1,12 @@
 import Image from 'next/image';
 import panorama from '../public/panorama_cropped_1000.webp';
 import styled from 'styled-components';
-import { fetchContentForRoute } from '@catlord/cdn';
+import { fetchContentForRoute } from '@catlord/lib-cms';
 import PortableText from 'react-portable-text';
 
 const maxContentWidth = 1000;
 const aspectRatio = 2.685185;
-const panoramaHeight = maxContentWidth/aspectRatio;
+const panoramaHeight = maxContentWidth / aspectRatio;
 
 const Content = styled.div`
   margin: auto;
@@ -24,14 +24,16 @@ export function Index({ content }) {
         height={panoramaHeight}
         placeholder="blur"
       />
-      <PortableText
-        content={content}
-        className="portable-text"
-        serializers={{}}
-      />
+      {content && (
+        <PortableText
+          content={content}
+          className="portable-text"
+          serializers={{}}
+        />
+      )}
     </Content>
   );
-};
+}
 
 export async function getServerSideProps() {
   return {
