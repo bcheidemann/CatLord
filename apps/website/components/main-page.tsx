@@ -1,13 +1,13 @@
 import { useToggle } from '@catlord/hooks';
 import Head from 'next/head';
-import React, { useMemo, useState } from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { IMenuSection, Menu, NavBar } from '@catlord/components';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { ReactComponent as DownIcon } from '../public/down-icon.svg';
 
-const menuSections: IMenuSection[] = [
+const menuSections = (): IMenuSection[] => [
   {
     id: 'main',
     options: [
@@ -73,7 +73,7 @@ export const MainPage: React.FC = ({ children }) => {
         <main>{children}</main>
         {bodyElement && ReactDOM.createPortal(
           <Menu
-            menuSections={menuSections}
+            menuSections={menuSections()}
             activeSectionId={activeSectionId}
             open={open}
             onRequestClose={toggle}

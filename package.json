@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "serve": "nx serve",
+    "dev": "nx serve",
     "start": "next start ./dist/apps/website",
     "build": "nx build --prod",
     "test": "nx test"
@@ -21,6 +21,7 @@
     "gsap": "^3.7.1",
     "next": "^12.0.3",
     "next-sanity": "^0.4.0",
+    "next-sanity-image": "^3.1.8",
     "preact": "^10.5.15",
     "react": "17.0.2",
     "react-dom": "17.0.2",

@@ -17,8 +17,8 @@ export default createSchema({
       title: 'Page',
       fields: [
         {
-          title: 'Title',
-          name: 'title',
+          title: 'Name',
+          name: 'name',
           type: 'string',
         },
         {

@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 import { cleanEnv, str, bool } from 'envalid';
-import { ClientConfig } from "next-sanity";
+import { ClientConfig } from 'next-sanity';
 
 dotenv.config({ path: '.env' });
 
@@ -36,9 +36,11 @@ const cleanedEnv = cleanEnv(
   }
 );
 
-export const sanityConfig: ClientConfig = {
+const config: ClientConfig = {
   dataset: cleanedEnv.SANITY_DATASET,
   projectId: cleanedEnv.SANITY_PROJECT_ID,
   useCdn: cleanedEnv.SANITY_USE_CDN,
   apiVersion: cleanedEnv.SANITY_API_VERSION,
 };
+
+export { config };

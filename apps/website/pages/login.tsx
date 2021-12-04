@@ -1,6 +1,6 @@
 export function Login() {
   return (
-    <span>This is the login page</span>
+    <span>Login currently unavailable.</span>
   );
 }
 

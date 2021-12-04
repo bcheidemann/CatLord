@@ -1,8 +1,16 @@
 import Image from 'next/image';
 import panorama from '../public/panorama_cropped_1000.webp';
 import styled from 'styled-components';
-import { fetchContentForRoute } from '@catlord/lib-cms';
-import PortableText from 'react-portable-text';
+import { config, fetchContentForRoute } from '@catlord/lib-cms';
+import { CommonPageProps } from '../types/CommonPageProps';
+import React from 'react';
+import PortableText from '../components/PortableText';
+import { provideSanityContext, PropsWithSanityConfig } from '../components/SanityConfigProvider';
+
+type Props = CommonPageProps<{
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  content: any;
+}>;
 
 const maxContentWidth = 1000;
 const aspectRatio = 2.685185;
@@ -14,7 +22,7 @@ const Content = styled.div`
   max-width: ${maxContentWidth}px;
 `;
 
-export function Index({ content }) {
+export function Index({ content }: Props) {
   return (
     <Content>
       <Image
@@ -27,20 +35,21 @@ export function Index({ content }) {
       {content && (
         <PortableText
           content={content}
-          className="portable-text"
-          serializers={{}}
         />
       )}
     </Content>
   );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(): Promise<{ props: PropsWithSanityConfig<Props> }> {
+  const content = await fetchContentForRoute('/');
+
   return {
     props: {
-      content: await fetchContentForRoute('/'),
+      content,
+      config,
     },
-  }
-};
+  };
+}
 
-export default Index;
+export default provideSanityContext(Index);
