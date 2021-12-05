@@ -1,7 +1,7 @@
+import PageContent from '../components/PageContent';
+
 export function Map() {
-  return (
-    <span>This is the map page</span>
-  );
+  return <PageContent>This is the map page</PageContent>;
 }
 
 export default Map;

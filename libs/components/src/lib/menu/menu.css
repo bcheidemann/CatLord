@@ -1,5 +1,5 @@
 :root {
-  --menu-background-open: rgba(0, 0, 0, 0.5);
+  --menu-background-open: rgba(0, 0, 0, 0.9);
   --menu-background-closed: rgba(0, 0, 0, 0);
   --menu-background-blur: 10px;
   --menu-item-animation-dist: 400px;

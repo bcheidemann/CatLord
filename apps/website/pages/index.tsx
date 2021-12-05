@@ -1,46 +1,47 @@
 import Image from 'next/image';
 import panorama from '../public/panorama_cropped_1000.webp';
-import styled from 'styled-components';
 import { config, Content, fetchContentForRoute } from '@catlord/lib-cms';
 import { CommonPageProps } from '../types/CommonPageProps';
 import React from 'react';
 import PortableText from '../components/PortableText';
-import { provideSanityContext, PropsWithSanityConfig } from '../components/SanityConfigProvider';
+import {
+  provideSanityContext,
+  PropsWithSanityConfig,
+} from '../components/SanityConfigProvider';
+import PageContent, { MAX_CONTENT_WIDTH } from '../components/PageContent';
+import styled from 'styled-components';
 
 type Props = CommonPageProps<{
   content: Content;
 }>;
 
-const maxContentWidth = 1000;
 const aspectRatio = 2.685185;
-const panoramaHeight = maxContentWidth / aspectRatio;
+const panoramaHeight = MAX_CONTENT_WIDTH / aspectRatio;
 
-const Content = styled.div`
-  margin: auto;
-  width: 100%;
-  max-width: ${maxContentWidth}px;
+const TitleImage = styled.div`
+  margin: 0 -20px;
 `;
 
 export function Index({ content }: Props) {
   return (
-    <Content>
-      <Image
-        src={panorama}
-        alt="Panorama of the servers central shopping district"
-        width={maxContentWidth}
-        height={panoramaHeight}
-        placeholder="blur"
-      />
-      {content && (
-        <PortableText
-          content={content}
+    <PageContent>
+      <TitleImage>
+        <Image
+          src={panorama}
+          alt="Panorama of the servers central shopping district"
+          width={MAX_CONTENT_WIDTH}
+          height={panoramaHeight}
+          placeholder="blur"
         />
-      )}
-    </Content>
+      </TitleImage>
+      {content && <PortableText content={content} />}
+    </PageContent>
   );
 }
 
-export async function getServerSideProps(): Promise<{ props: PropsWithSanityConfig<Props> }> {
+export async function getServerSideProps(): Promise<{
+  props: PropsWithSanityConfig<Props>;
+}> {
   const content = await fetchContentForRoute('/');
 
   return {

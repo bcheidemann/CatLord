@@ -9,10 +9,6 @@ import { ReactComponent as DownIcon } from '../public/down-icon.svg';
 import NProgress from 'nprogress';
 import Router from 'next/router';
 
-// NProgress.configure({ showSpinner: publicRuntimeConfig.NProgressShowSpinner });
-
-globalThis.NProgress = NProgress;
-
 Router.events.on('routeChangeStart', () => {
   NProgress.start();
 });
@@ -34,7 +30,6 @@ const menuSections = (): IMenuSection[] => [
       { id: 'news', name: 'News', data: '/news' },
       { id: 'mods', name: 'Mods' },
       { id: 'map', name: 'Map', data: '/map' },
-      { id: 'login', name: 'Login', data: '/login' },
     ],
   },
   {
