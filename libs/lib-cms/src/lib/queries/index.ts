@@ -1,2 +1,2 @@
-export * from './page';
+export * from './queries';
 export * from './routes';

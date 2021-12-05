@@ -6,12 +6,32 @@ import { IMenuSection, Menu, NavBar } from '@catlord/components';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { ReactComponent as DownIcon } from '../public/down-icon.svg';
+import NProgress from 'nprogress';
+import Router from 'next/router';
+
+// NProgress.configure({ showSpinner: publicRuntimeConfig.NProgressShowSpinner });
+
+globalThis.NProgress = NProgress;
+
+Router.events.on('routeChangeStart', () => {
+  NProgress.start();
+});
+
+Router.events.on('routeChangeComplete', () => {
+  NProgress.done();
+});
+
+Router.events.on('routeChangeError', () => {
+  NProgress.done();
+});
+
 
 const menuSections = (): IMenuSection[] => [
   {
     id: 'main',
     options: [
       { id: 'home', name: 'Home', data: '/' },
+      { id: 'news', name: 'News', data: '/news' },
       { id: 'mods', name: 'Mods' },
       { id: 'map', name: 'Map', data: '/map' },
       { id: 'login', name: 'Login', data: '/login' },

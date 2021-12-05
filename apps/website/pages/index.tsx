@@ -1,15 +1,14 @@
 import Image from 'next/image';
 import panorama from '../public/panorama_cropped_1000.webp';
 import styled from 'styled-components';
-import { config, fetchContentForRoute } from '@catlord/lib-cms';
+import { config, Content, fetchContentForRoute } from '@catlord/lib-cms';
 import { CommonPageProps } from '../types/CommonPageProps';
 import React from 'react';
 import PortableText from '../components/PortableText';
 import { provideSanityContext, PropsWithSanityConfig } from '../components/SanityConfigProvider';
 
 type Props = CommonPageProps<{
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  content: any;
+  content: Content;
 }>;
 
 const maxContentWidth = 1000;

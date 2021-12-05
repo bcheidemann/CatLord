@@ -1,3 +1,4 @@
+import { Content } from '@catlord/lib-cms';
 import _PortableText from 'react-portable-text';
 import useImageBuilder from '../utlis/useImageBuilder';
 
@@ -11,8 +12,7 @@ type ImageData = {
 };
 
 type Props = {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  content: any;
+  content: Content;
 };
 
 const PortableText = ({ content }: Props) => {
