@@ -1,6 +1,6 @@
 import { config, fetchArticles } from '@catlord/lib-cms';
-import { GetServerSidePropsContext } from 'next';
 import ArticleCard from '../components/ArticleCard';
+import PageContent from '../components/PageContent';
 import {
   PropsWithSanityConfig,
   provideSanityContext,
@@ -13,11 +13,11 @@ type Props = {
 
 export function News({ articles }: Props) {
   return (
-    <>
+    <PageContent>
       {articles.map((article) => (
         <ArticleCard key={article.id} {...article} />
       ))}
-    </>
+    </PageContent>
   );
 }
 

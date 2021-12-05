@@ -1,4 +1,5 @@
 import { config, fetchArticle } from '@catlord/lib-cms';
+import PageContent from '../../components/PageContent';
 import { GetServerSidePropsContext } from 'next';
 import PortableText from '../../components/PortableText';
 import {
@@ -12,7 +13,7 @@ type Props = {
 };
 
 export function News({ article }: Props) {
-  return <div>{article && <PortableText content={article.content} />}</div>;
+  return <PageContent>{article && <PortableText content={article.content} />}</PageContent>;
 }
 
 export async function getServerSideProps(context: GetServerSidePropsContext): Promise<{
