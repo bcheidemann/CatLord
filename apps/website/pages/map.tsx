@@ -1,7 +1,11 @@
-import PageContent from '../components/PageContent';
+import { PageParameters } from "../components/MainPage";
 
 export function Map() {
-  return <PageContent>This is the map page</PageContent>;
+  return <>The map is currently unavailable</>;
 }
+
+Map.parameters = {
+  fullscreen: true,
+} as PageParameters;
 
 export default Map;

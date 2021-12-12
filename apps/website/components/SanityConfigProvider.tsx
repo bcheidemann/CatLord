@@ -12,7 +12,7 @@ export type PropsWithSanityConfig<P> = {
 } & P;
 
 // eslint-disable-next-line @typescript-eslint/ban-types
-export function provideSanityContext<P extends object>(ChildComponent: (props: P) => JSX.Element) {
+export function provideSanityContext<P extends object>(ChildComponent: (props: P) => JSX.Element | null) {
   const WrappedComponent = ({ config, ...props }: PropsWithSanityConfig<P>) => (
     <SanityConfigProvider value={config}>
       <ChildComponent {...props as P} />

@@ -46,7 +46,7 @@ NavBar.Section = {
 NavBar.Button = (props) => {
   const { icon, ...buttonProps } = props;
   return (
-    <button {...buttonProps}>
+    <button {...buttonProps} aria-label="Menu">
       {icon}
       <span className={'buttontext'}>{props.children}</span>
     </button>

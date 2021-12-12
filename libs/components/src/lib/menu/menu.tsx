@@ -80,7 +80,7 @@ export function Menu(props: MenuProps) {
   if (!isVisible) menuClassName += ' norender';
 
   return (
-    <div ref={menuRef} className={menuClassName} onClick={onRequestClose}>
+    <menu ref={menuRef} className={menuClassName} onClick={onRequestClose}>
       {menuSections.map((section) => {
         let className = 'section';
         const isActive = section.id === activeSectionId;
@@ -91,7 +91,7 @@ export function Menu(props: MenuProps) {
           if (wasSeen) className += ' left';
         }
         return (
-          <div key={section.id} className={className}>
+          <section key={section.id} className={className}>
             {section.options.map((option, i) => {
               const onSelect =
                 onSelectOption &&
@@ -100,20 +100,20 @@ export function Menu(props: MenuProps) {
                   onSelectOption(section.id, option.id, option.data);
                 });
               return (
-                <span
+                <option
                   key={option.id}
                   className={isVisible ? 'item' : 'item norender'}
                   style={{ '--animation-order': i }}
                   onClick={onSelect}
                 >
                   {option.name}
-                </span>
+                </option>
               );
             })}
-          </div>
+          </section>
         );
       })}
-    </div>
+    </menu>
   );
 }
 

@@ -8,7 +8,7 @@ import {
   provideSanityContext,
   PropsWithSanityConfig,
 } from '../components/SanityConfigProvider';
-import PageContent, { MAX_CONTENT_WIDTH } from '../components/PageContent';
+import { MAX_CONTENT_WIDTH } from '../components/PageContent';
 import styled from 'styled-components';
 
 type Props = CommonPageProps<{
@@ -24,7 +24,7 @@ const TitleImage = styled.div`
 
 export function Index({ content }: Props) {
   return (
-    <PageContent>
+    <>
       <TitleImage>
         <Image
           src={panorama}
@@ -35,11 +35,11 @@ export function Index({ content }: Props) {
         />
       </TitleImage>
       {content && <PortableText content={content} />}
-    </PageContent>
+    </>
   );
 }
 
-export async function getServerSideProps(): Promise<{
+export async function getStaticProps(): Promise<{
   props: PropsWithSanityConfig<Props>;
 }> {
   const content = await fetchContentForRoute('/');

@@ -1,11 +1,9 @@
 import {
   config,
   Content,
-  fetchArticle,
   fetchContentForRoute,
 } from '@catlord/lib-cms';
-import PageContent from '../../components/PageContent';
-import { GetServerSidePropsContext } from 'next';
+import { GetStaticPropsContext, GetStaticPathsResult } from 'next';
 import PortableText from '../../components/PortableText';
 import {
   PropsWithSanityConfig,
@@ -18,12 +16,12 @@ type Props = {
 
 export function News({ content }: Props) {
   return (
-    <PageContent>{content && <PortableText content={content} />}</PageContent>
+    <>{content && <PortableText content={content} />}</>
   );
 }
 
-export async function getServerSideProps(
-  context: GetServerSidePropsContext
+export async function getStaticProps(
+  context: GetStaticPropsContext
 ): Promise<{
   props: PropsWithSanityConfig<Props>;
 }> {
@@ -31,7 +29,7 @@ export async function getServerSideProps(
     throw new Error('No such mod');
   }
 
-  const content = await fetchContentForRoute(context.params.modId as string);
+  const content = await fetchContentForRoute(`/mods/${context.params.modId as string}`);
 
   return {
     props: {
@@ -39,6 +37,17 @@ export async function getServerSideProps(
       config,
     },
   };
+}
+
+export async function getStaticPaths(): Promise<GetStaticPathsResult> {
+  return {
+    paths: [
+      { params: { modId: 'catcrafting' } },
+      // { params: { modId: 'yerawizard' } },
+      // { params: { modId: 'chestframes' } },
+    ],
+    fallback: false,
+  }
 }
 
 export default provideSanityContext(News);

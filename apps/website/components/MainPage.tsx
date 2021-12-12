@@ -6,23 +6,15 @@ import { IMenuSection, Menu, NavBar } from '@catlord/components';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { ReactComponent as DownIcon } from '../public/down-icon.svg';
-import NProgress from 'nprogress';
-import Router from 'next/router';
+import PageContent from './PageContent';
 
-Router.events.on('routeChangeStart', () => {
-  NProgress.start();
-});
+export type PageParameters = {
+  fullscreen?: boolean;
+}
 
-Router.events.on('routeChangeComplete', () => {
-  NProgress.done();
-});
+type Props = PageParameters;
 
-Router.events.on('routeChangeError', () => {
-  NProgress.done();
-});
-
-
-const menuSections = (): IMenuSection[] => [
+const menuSections: IMenuSection[] = [
   {
     id: 'main',
     options: [
@@ -45,7 +37,7 @@ const menuSections = (): IMenuSection[] => [
 
 const bodyElement = globalThis.window?.document.body;
 
-export const MainPage: React.FC = ({ children }) => {
+export const MainPage: React.FC<Props> = ({ children, fullscreen }) => {
   const [open, toggle] = useToggle();
   const [activeSectionId, setActiveSectionId] = useState('main');
   const router = useRouter();
@@ -85,10 +77,10 @@ export const MainPage: React.FC = ({ children }) => {
             </NavBar.Button>
           </NavBar.Section.Right>
         </NavBar>
-        <main>{children}</main>
+        <PageContent fullscreen={fullscreen}>{children}</PageContent>
         {bodyElement && ReactDOM.createPortal(
           <Menu
-            menuSections={menuSections()}
+            menuSections={menuSections}
             activeSectionId={activeSectionId}
             open={open}
             onRequestClose={toggle}
