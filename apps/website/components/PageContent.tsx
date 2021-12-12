@@ -116,7 +116,7 @@ const PageContent = ({ children, fullscreen }: Props) => {
       <Image
         $side="right"
         $hide={!shouldDisplayImages}
-        src="/players/catlord.png"
+        src="/players/catlord.webp"
         alt="CatLord97 holding a pickaxe"
       />
       <Footer />
