@@ -11,7 +11,7 @@ const articlesQuery = groq`
     author,
     tags,
     publishAt,
-  } | order(publishAt asc)
+  } | order(publishAt desc)
 `;
 
 const pageQuery = groq`
