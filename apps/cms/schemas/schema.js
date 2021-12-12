@@ -33,6 +33,27 @@ export default createSchema({
           of: [
             { type: 'block' },
             { type: 'image' },
+            {
+              name: 'info',
+              type: 'document',
+              title: 'Info',
+              fields: [
+                {
+                  title: 'Level',
+                  name: 'level',
+                  type: 'string',
+                },
+                {
+                  title: 'Content',
+                  name: 'content',
+                  type: 'array',
+                  of: [
+                    { type: 'block' },
+                    { type: 'image' },
+                  ],
+                },
+              ]
+            },
           ]
         },
       ]
@@ -77,6 +98,27 @@ export default createSchema({
           of: [
             { type: 'block' },
             { type: 'image' },
+            {
+              name: 'info',
+              type: 'document',
+              title: 'Info',
+              fields: [
+                {
+                  title: 'Level',
+                  name: 'level',
+                  type: 'string',
+                },
+                {
+                  title: 'Content',
+                  name: 'content',
+                  type: 'array',
+                  of: [
+                    { type: 'block' },
+                    { type: 'image' },
+                  ],
+                },
+              ]
+            },
           ],
         },
       ]
