@@ -1,6 +1,6 @@
 export default {
   name: 'info',
-  type: 'document',
+  type: 'object',
   title: 'Info',
   fields: [
     {
@@ -11,11 +11,7 @@ export default {
     {
       title: 'Content',
       name: 'content',
-      type: 'array',
-      of: [
-        { type: 'block' },
-        { type: 'image' },
-      ],
+      type: 'rich-text',
     },
   ]
 };

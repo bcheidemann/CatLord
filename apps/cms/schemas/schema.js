@@ -4,6 +4,7 @@ import schemaTypes from 'all:part:@sanity/base/schema-type'
 import page from './page';
 import article from './article';
 import richText from './rich-text';
+import info from './info';
 
 export default createSchema({
   name: 'default',
@@ -11,5 +12,6 @@ export default createSchema({
     page,
     article,
     richText,
+    info,
   ]),
 });
