@@ -21,7 +21,6 @@ jobs:
         run: doctl registry login --expiry-seconds 600
       - name: Tag Docker Image
         run:
-          docker tag catlord-website \
-          registry.digitalocean.com/cat-containers/catlord-website:latest
+          docker tag catlord-website registry.digitalocean.com/cat-containers/catlord-website:latest
       - name: Push Image to Digital Ocean Container Registry
         run: docker push registry.digitalocean.com/cat-containers/catlord-website:latest
