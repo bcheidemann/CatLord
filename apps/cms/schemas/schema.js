@@ -5,6 +5,7 @@ import page from './page';
 import article from './article';
 import richText from './rich-text';
 import info from './info';
+import youtube from './youtube';
 
 export default createSchema({
   name: 'default',
@@ -13,5 +14,6 @@ export default createSchema({
     article,
     richText,
     info,
+    youtube,
   ]),
 });

@@ -6,5 +6,6 @@ export default {
     { type: 'block' },
     { type: 'image' },
     { type: 'info' },
+    { type: 'youtube' },
   ],
 };
