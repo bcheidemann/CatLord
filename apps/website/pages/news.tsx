@@ -1,4 +1,5 @@
 import { config, fetchArticles } from '@catlord/lib-cms';
+import { GetServerSidePropsResult } from 'next';
 import ArticleCard from '../components/ArticleCard';
 import {
   PropsWithSanityConfig,
@@ -21,9 +22,9 @@ export function News({ articles }: Props) {
   );
 }
 
-export async function getServerSideProps(): Promise<{
-  props: PropsWithSanityConfig<Props>;
-}> {
+type ServerSidePropsResult = GetServerSidePropsResult<PropsWithSanityConfig<Props>>;
+
+export async function getServerSideProps(): Promise<ServerSidePropsResult> {
   const articles = await fetchArticles();
 
   return {

@@ -1,9 +1,9 @@
 import {
-  config,
+  config as cmsConfig,
   Content,
   fetchContentForRoute,
 } from '@catlord/lib-cms';
-import { GetStaticPropsContext, GetStaticPathsResult } from 'next';
+import { GetStaticPropsContext, GetStaticPathsResult, GetStaticPropsResult } from 'next';
 import PortableText from '../../components/PortableText';
 import {
   PropsWithSanityConfig,
@@ -20,11 +20,11 @@ export function News({ content }: Props) {
   );
 }
 
+type StaticPropsResult = GetStaticPropsResult<PropsWithSanityConfig<Props>>;
+
 export async function getStaticProps(
   context: GetStaticPropsContext
-): Promise<{
-  props: PropsWithSanityConfig<Props>;
-}> {
+): Promise<StaticPropsResult> {
   if (!context.params?.modId) {
     throw new Error('No such mod');
   }
@@ -34,7 +34,7 @@ export async function getStaticProps(
   return {
     props: {
       content,
-      config,
+      config: cmsConfig,
     },
   };
 }

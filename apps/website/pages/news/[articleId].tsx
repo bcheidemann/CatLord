@@ -1,6 +1,15 @@
-import { Article, config, fetchArticle, fetchArticles } from '@catlord/lib-cms';
+import {
+  Article,
+  config as cmsConfig,
+  fetchArticle,
+  fetchArticles,
+} from '@catlord/lib-cms';
 import { PageLoading } from '../../components/PageLoading';
-import { GetStaticPathsResult, GetStaticPropsContext } from 'next';
+import {
+  GetStaticPathsResult,
+  GetStaticPropsContext,
+  GetStaticPropsResult,
+} from 'next';
 import { useRouter } from 'next/router';
 import PortableText from '../../components/PortableText';
 import {
@@ -8,6 +17,7 @@ import {
   provideSanityContext,
 } from '../../components/SanityConfigProvider';
 import Tags from '../../components/Tags';
+import config from '../../config';
 
 type Props = {
   article?: Article | null;
@@ -33,19 +43,23 @@ export function News({ article }: Props) {
       <h3>
         {article.author} - {new Date(article.publishAt).toLocaleDateString()}
       </h3>
-      <Tags>
-        {article.tags.map((tag) => (
-          <Tags.Tag key={tag}>{tag}</Tags.Tag>
-        ))}
-      </Tags>
+      {article.tags && (
+        <Tags>
+          {article.tags.map((tag) => (
+            <Tags.Tag key={tag}>{tag}</Tags.Tag>
+          ))}
+        </Tags>
+      )}
       <PortableText content={article.content} />
     </>
   );
 }
 
-export async function getStaticProps(context: GetStaticPropsContext): Promise<{
-  props: PropsWithSanityConfig<Props>;
-}> {
+type StaticPropsResult = GetStaticPropsResult<PropsWithSanityConfig<Props>>;
+
+export async function getStaticProps(
+  context: GetStaticPropsContext
+): Promise<StaticPropsResult> {
   if (!context.params) {
     throw new Error('Params expected');
   }
@@ -55,8 +69,9 @@ export async function getStaticProps(context: GetStaticPropsContext): Promise<{
   return {
     props: {
       article,
-      config,
+      config: cmsConfig,
     },
+    revalidate: config.REVALIDATE_TIME,
   };
 }
 

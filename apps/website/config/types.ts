@@ -1,1 +1,3 @@
-export type Config = Record<string, never>;
+export type Config = {
+  REVALIDATE_TIME: number;
+};

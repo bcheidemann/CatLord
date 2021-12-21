@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import panorama from '../public/panorama_cropped_1000.webp';
-import { config, Content, fetchContentForRoute } from '@catlord/lib-cms';
+import { config as cmsConfig, Content, fetchContentForRoute } from '@catlord/lib-cms';
 import { CommonPageProps } from '../types/CommonPageProps';
 import React from 'react';
 import PortableText from '../components/PortableText';
@@ -10,6 +10,8 @@ import {
 } from '../components/SanityConfigProvider';
 import { MAX_CONTENT_WIDTH } from '../components/PageContent';
 import styled from 'styled-components';
+import { GetStaticPropsResult } from 'next';
+import config from '../config';
 
 type Props = CommonPageProps<{
   content: Content;
@@ -39,16 +41,17 @@ export function Index({ content }: Props) {
   );
 }
 
-export async function getStaticProps(): Promise<{
-  props: PropsWithSanityConfig<Props>;
-}> {
+type StaticProps = GetStaticPropsResult<PropsWithSanityConfig<Props>>;
+
+export async function getStaticProps(): Promise<StaticProps> {
   const content = await fetchContentForRoute('/');
 
   return {
     props: {
       content,
-      config,
+      config: cmsConfig,
     },
+    revalidate: config.REVALIDATE_TIME,
   };
 }
 
