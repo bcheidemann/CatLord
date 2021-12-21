@@ -20,9 +20,15 @@ const menuSections: IMenuSection[] = [
     options: [
       { id: 'home', name: 'Home', data: '/' },
       { id: 'news', name: 'News', data: '/news' },
-      { id: 'getting-started', name: 'Getting Started', data: '/getting-started' },
+      { id: 'guides', name: 'Guides' },
       { id: 'mods', name: 'Mods' },
       { id: 'map', name: 'Map', data: '/map' },
+    ],
+  },
+  {
+    id: 'guides',
+    options: [
+      { id: 'getting-started', name: 'Getting Started', data: '/getting-started' },
     ],
   },
   {
