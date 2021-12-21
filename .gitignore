@@ -42,3 +42,4 @@ Thumbs.db
 /apps/cms/node_modules
 /apps/cms/dist
 .accesstokens
+.env
