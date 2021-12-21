@@ -52,11 +52,13 @@ const ArticleCard = ({ author, id, name, publishAt, tags }: ArticleSummary) => (
         <h3>
           {author} - {new Date(publishAt).toLocaleDateString()}
         </h3>
-        <Tags>
-          {tags.map((tag) => (
-            <Tags.Tag key={tag}>{tag}</Tags.Tag>
-          ))}
-        </Tags>
+        {tags && (
+          <Tags>
+            {tags.map((tag) => (
+              <Tags.Tag key={tag}>{tag}</Tags.Tag>
+            ))}
+          </Tags>
+        )}
       </LeftCard>
       <Icon />
     </Card>
