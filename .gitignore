@@ -41,3 +41,4 @@ Thumbs.db
 # CMS
 /apps/cms/node_modules
 /apps/cms/dist
+.accesstokens
