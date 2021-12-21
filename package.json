@@ -6,6 +6,7 @@
     "dev": "nx serve",
     "start": "next start ./dist/apps/website",
     "build": "nx build --prod",
+    "build:verbose": "nx build --prod",
     "test": "nx test"
   },
   "private": true,

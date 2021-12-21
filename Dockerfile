@@ -16,7 +16,7 @@ WORKDIR /catlord
 
 COPY . .
 COPY --from=deps /catlord/node_modules ./node_modules
-RUN npm run build
+RUN npm run build:verbose
 
 # Production image, copy all the files and run next
 FROM node:16-alpine AS runner
