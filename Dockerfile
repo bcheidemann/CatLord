@@ -15,8 +15,8 @@ FROM node:16-alpine AS builder
 WORKDIR /catlord
 
 COPY . .
-# TODO: create .env.production from github variables?
-COPY .env.production ./.env
+# TODO: create .env.prod from github variables?
+COPY .env.prod ./.env
 COPY --from=deps /catlord/node_modules ./node_modules
 RUN npm run build:verbose
 
