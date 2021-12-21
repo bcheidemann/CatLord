@@ -1,4 +1,4 @@
-import { PageParameters } from "../components/MainPage";
+import { PageParameters } from '../components/MainPage';
 
 export function Map() {
   return <>The map is currently unavailable</>;
