@@ -1,4 +1,4 @@
-import info from './info';
+import content from './content';
 
 export default {
   name: 'page',
@@ -15,15 +15,6 @@ export default {
       name: 'path',
       type: 'string',
     },
-    {
-      title: 'Content',
-      name: 'content',
-      type: 'array',
-      of: [
-        { type: 'block' },
-        { type: 'image' },
-        info,
-      ]
-    },
+    content,
   ]
 };

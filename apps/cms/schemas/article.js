@@ -1,4 +1,4 @@
-import info from './info';
+import content from './content';
 
 export default {
   name: 'article',
@@ -33,15 +33,6 @@ export default {
       name: 'publishAt',
       type: 'datetime'
     },
-    {
-      title: 'Content',
-      name: 'content',
-      type: 'array',
-      of: [
-        { type: 'block' },
-        { type: 'image' },
-        info,
-      ],
-    },
+    content,
   ]
 };
