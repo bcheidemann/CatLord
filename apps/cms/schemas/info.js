@@ -1,3 +1,6 @@
+import React from 'react';
+import Info from "../components/info";
+
 export default {
   name: 'info',
   type: 'object',
@@ -13,5 +16,15 @@ export default {
       name: 'content',
       type: 'rich-text',
     },
-  ]
+  ],
+  preview: {
+    select: {
+      level: 'level',
+      content: 'content',
+    },
+    prepare(selection) {
+      return selection;
+    },
+    component: Info,
+  }
 };
