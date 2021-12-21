@@ -1,5 +1,3 @@
-import content from './content';
-
 export default {
   name: 'page',
   type: 'document',
@@ -15,6 +13,10 @@ export default {
       name: 'path',
       type: 'string',
     },
-    content,
+    {
+      title: 'Content',
+      name: 'content',
+      type: 'rich-text',
+    },
   ]
 };

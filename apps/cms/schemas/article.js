@@ -1,5 +1,3 @@
-import content from './content';
-
 export default {
   name: 'article',
   type: 'document',
@@ -33,6 +31,10 @@ export default {
       name: 'publishAt',
       type: 'datetime'
     },
-    content,
+    {
+      title: 'Content',
+      name: 'content',
+      type: 'rich-text',
+    },
   ]
 };

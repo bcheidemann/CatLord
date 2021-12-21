@@ -1,8 +1,7 @@
 import info from './info';
 
 export default {
-  title: 'Content',
-  name: 'content',
+  name: 'rich-text',
   type: 'array',
   of: [
     { type: 'block' },
