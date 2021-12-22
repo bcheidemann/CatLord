@@ -22,9 +22,6 @@ export default {
       level: 'level',
       content: 'content',
     },
-    prepare(selection) {
-      return selection;
-    },
     component: Info,
   }
 };
