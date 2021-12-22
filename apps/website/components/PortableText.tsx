@@ -3,6 +3,39 @@ import _PortableText from 'react-portable-text';
 import styled from 'styled-components';
 import useImageBuilder from '../utlis/useImageBuilder';
 
+function convertToEmbedLink(url) {
+  const embedUrl = new URL(url);
+  embedUrl.hostname = 'www.youtube-nocookie.com';
+  embedUrl.pathname = '/embed' + embedUrl.pathname;
+  return embedUrl.toString();
+}
+
+// TODO: refactor out these components to a shared library with CMS app
+const Youtube = ({ url }) => (
+  <div
+    style={{
+      marginTop: '1em',
+      marginBottom: '1em',
+      width: '100%',
+      display: 'flex',
+      justifyContent: 'center',
+    }}
+  >
+    <iframe
+      style={{
+        aspectRatio: 'calc(560/315)',
+        width: '100%',
+        maxWidth: '80vh',
+      }}
+      src={convertToEmbedLink(url)}
+      title="YouTube video player"
+      frameBorder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen
+    />
+  </div>
+);
+
 const Info = styled.div<{ $level: string }>`
   padding: 1px 16px;
   border-radius: 16px;
@@ -50,6 +83,8 @@ const PortableText = ({ content }: Props) => {
             <PortableText content={content} />
           </Info>
         ),
+        // eslint-disable-next-line react/display-name
+        youtube: ({ url }) => <Youtube url={url} />,
       }}
     />
   );
