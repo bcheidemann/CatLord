@@ -1,10 +1,14 @@
 import React from 'react';
 
 function convertToEmbedLink(url) {
-  const embedUrl = new URL(url);
-  embedUrl.hostname = 'www.youtube-nocookie.com';
-  embedUrl.pathname = '/embed' + embedUrl.pathname;
-  return embedUrl.toString();
+  try {
+    const embedUrl = new URL(url);
+    embedUrl.hostname = 'www.youtube-nocookie.com';
+    embedUrl.pathname = '/embed' + embedUrl.pathname;
+    return embedUrl.toString();
+  } catch (err) {
+    return url;
+  }
 }
 
 export default ({ value }) => {

@@ -4,10 +4,14 @@ import styled from 'styled-components';
 import useImageBuilder from '../utlis/useImageBuilder';
 
 function convertToEmbedLink(url) {
-  const embedUrl = new URL(url);
-  embedUrl.hostname = 'www.youtube-nocookie.com';
-  embedUrl.pathname = '/embed' + embedUrl.pathname;
-  return embedUrl.toString();
+  try {
+    const embedUrl = new URL(url);
+    embedUrl.hostname = 'www.youtube-nocookie.com';
+    embedUrl.pathname = '/embed' + embedUrl.pathname;
+    return embedUrl.toString();
+  } catch (err) {
+    return url;
+  }
 }
 
 // TODO: refactor out these components to a shared library with CMS app
