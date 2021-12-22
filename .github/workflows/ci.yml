@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build_and_push:
+  deploy_website:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -31,3 +31,22 @@ jobs:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
       - name: Create Digital Ocean Deployment
         run: doctl apps create-deployment ${{ secrets.DIGITALOCEAN_APP_ID }}
+
+  deploy_cms:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Node.js Environment
+        uses: actions/setup-node@v1.4.2
+        with:
+          node-version: 12.x
+      - name:
+      - name: Install dependencies
+        working-directory: ./apps/cms
+        run: npm install
+      - name: Deploy Sanity
+        working-directory: ./apps/cms
+        run: SANITY_AUTH_TOKEN="${{ secrets.SANITY_AUTH_TOKEN }}" npm run deploy
+      - name: Deploy Sanity
+        working-directory: ./apps/cms
+        run: SANITY_AUTH_TOKEN="${{ secrets.SANITY_AUTH_TOKEN }}" npm run deploy:graphql
