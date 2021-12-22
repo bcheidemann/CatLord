@@ -45,7 +45,9 @@ jobs:
         run: npm install
       - name: Deploy Sanity
         working-directory: ./apps/cms
-        run: SANITY_AUTH_TOKEN="${{ secrets.SANITY_AUTH_TOKEN }}" npm run deploy
-      - name: Deploy Sanity
+        run: |
+          npm run build
+          SANITY_AUTH_TOKEN="${{ secrets.SANITY_AUTH_TOKEN }}" npm run deploy
+      - name: Deploy Sanity GraphQL
         working-directory: ./apps/cms
         run: SANITY_AUTH_TOKEN="${{ secrets.SANITY_AUTH_TOKEN }}" npm run deploy:graphql
