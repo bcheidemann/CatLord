@@ -10,7 +10,7 @@ import PageContent from './PageContent';
 
 export type PageParameters = {
   fullscreen?: boolean;
-}
+};
 
 type Props = PageParameters;
 
@@ -23,12 +23,17 @@ const menuSections: IMenuSection[] = [
       { id: 'guides', name: 'Guides' },
       { id: 'mods', name: 'Mods' },
       { id: 'map', name: 'Map', data: '/map' },
+      { id: 'donate', name: 'Donate', data: '/donate' },
     ],
   },
   {
     id: 'guides',
     options: [
-      { id: 'getting-started', name: 'Getting Started', data: '/getting-started' },
+      {
+        id: 'getting-started',
+        name: 'Getting Started',
+        data: '/getting-started',
+      },
     ],
   },
   {
@@ -85,17 +90,18 @@ export const MainPage: React.FC<Props> = ({ children, fullscreen }) => {
           </NavBar.Section.Right>
         </NavBar>
         <PageContent fullscreen={fullscreen}>{children}</PageContent>
-        {bodyElement && ReactDOM.createPortal(
-          <Menu
-            menuSections={menuSections}
-            activeSectionId={activeSectionId}
-            open={open}
-            onRequestClose={toggle}
-            onSelectOption={onSelectOption}
-            onClosed={() => setActiveSectionId('main')}
-          />,
-          bodyElement,
-        )}
+        {bodyElement &&
+          ReactDOM.createPortal(
+            <Menu
+              menuSections={menuSections}
+              activeSectionId={activeSectionId}
+              open={open}
+              onRequestClose={toggle}
+              onSelectOption={onSelectOption}
+              onClosed={() => setActiveSectionId('main')}
+            />,
+            bodyElement
+          )}
       </div>
     </>
   );

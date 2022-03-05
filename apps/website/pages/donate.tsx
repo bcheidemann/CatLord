@@ -1,6 +1,10 @@
 import Image from 'next/image';
 import panorama from '../public/panorama_cropped_1000.webp';
-import { config as cmsConfig, Content, fetchContentForRoute } from '@catlord/lib-cms';
+import {
+  config as cmsConfig,
+  Content,
+  fetchContentForRoute,
+} from '@catlord/lib-cms';
 import { CommonPageProps } from '../types/CommonPageProps';
 import React from 'react';
 import PortableText from '../components/PortableText';
@@ -23,7 +27,24 @@ const TitleImage = styled.div`
   margin: 0 -20px;
 `;
 
-export function Index({ content }: Props) {
+const DonateButton = styled.a`
+  background: #290f7c url(https://donorbox.org/images/red_logo.png) no-repeat 37px;
+  color: #fff;
+  text-decoration: none;
+  font-family: Verdana,sans-serif;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 16px;
+  padding: 15px 38px;
+  padding-left: 75px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  box-shadow: 0 1px 0 0 #1f5a89;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+`;
+
+export function Donate({ content }: Props) {
   return (
     <>
       <TitleImage>
@@ -36,6 +57,12 @@ export function Index({ content }: Props) {
         />
       </TitleImage>
       {content && <PortableText content={content} />}
+      <DonateButton
+        href="https://donorbox.org/catlord"
+        target="_blank"
+      >
+        Donate
+      </DonateButton>
     </>
   );
 }
@@ -43,7 +70,7 @@ export function Index({ content }: Props) {
 type ServerProps = GetServerSidePropsResult<PropsWithSanityConfig<Props>>;
 
 export async function getServerSideProps(): Promise<ServerProps> {
-  const content = await fetchContentForRoute('/');
+  const content = await fetchContentForRoute('/donate');
 
   return {
     props: {
@@ -53,4 +80,4 @@ export async function getServerSideProps(): Promise<ServerProps> {
   };
 }
 
-export default provideSanityContext(Index);
+export default provideSanityContext(Donate);

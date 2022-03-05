@@ -4,5 +4,6 @@
     "hooks",
     "types",
     "website"
-  ]
+  ],
+  "editor.tabSize": 2
 }

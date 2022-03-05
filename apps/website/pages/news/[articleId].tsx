@@ -6,9 +6,8 @@ import {
 } from '@catlord/lib-cms';
 import { PageLoading } from '../../components/PageLoading';
 import {
-  GetStaticPathsResult,
-  GetStaticPropsContext,
-  GetStaticPropsResult,
+  GetServerSidePropsContext,
+  GetServerSidePropsResult
 } from 'next';
 import { useRouter } from 'next/router';
 import PortableText from '../../components/PortableText';
@@ -55,11 +54,11 @@ export function News({ article }: Props) {
   );
 }
 
-type StaticPropsResult = GetStaticPropsResult<PropsWithSanityConfig<Props>>;
+type ServerProps = GetServerSidePropsResult<PropsWithSanityConfig<Props>>;
 
-export async function getStaticProps(
-  context: GetStaticPropsContext
-): Promise<StaticPropsResult> {
+export async function getServerSideProps(
+  context: GetServerSidePropsContext
+): Promise<ServerProps> {
   if (!context.params) {
     throw new Error('Params expected');
   }
@@ -71,18 +70,6 @@ export async function getStaticProps(
       article,
       config: cmsConfig,
     },
-    revalidate: config.REVALIDATE_TIME,
-  };
-}
-
-export async function getStaticPaths(): Promise<GetStaticPathsResult> {
-  const articles = await fetchArticles();
-
-  return {
-    paths: articles.map(({ id }) => ({
-      params: { articleId: id },
-    })),
-    fallback: true,
   };
 }
 
